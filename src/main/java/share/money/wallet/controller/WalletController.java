@@ -16,9 +16,8 @@ public class WalletController {
     @Autowired
     private WalletService walletService;
 
-
     @PostMapping(path = "/wallet/{userId}")
-    public WalletRest createUser(@PathVariable(name = "userId") String userId, @RequestBody WalletCreationRequestModel walletCreationRequestModel) {
+    public WalletRest createWallet(@PathVariable(name = "userId") String userId, @RequestBody WalletCreationRequestModel walletCreationRequestModel) {
 
         WalletDto walletDto = new ModelMapper().map(walletCreationRequestModel, WalletDto.class);
         walletDto.setUserId(userId);
@@ -27,17 +26,17 @@ public class WalletController {
         return new ModelMapper().map(userDtoOutcome, WalletRest.class);
     }
 
-    @RequestMapping(value = "/wallet/{userId}", method = RequestMethod.GET)
+    @GetMapping(value = "/wallet/{userId}")
     @ResponseBody
-    public WalletModelResponse getUserMoneyTotalByUserId(@PathVariable(name = "userId") String userId) {
+    public WalletModelResponse getWallet(@PathVariable(name = "userId") String userId) {
 
         WalletDto walletDto = walletService.findByUserId(userId);
         return new ModelMapper().map(walletDto, WalletModelResponse.class);
     }
 
-    @RequestMapping(value = "/wallet/{userId}", method = RequestMethod.PUT)
+    @PutMapping(value = "/wallet/{userId}")
     @ResponseBody
-    public WalletModelResponse topUpAccount(@PathVariable(name = "userId") String userId, @RequestBody TopUpModelRequest modelRequest) {
+    public WalletModelResponse topPopWallet(@PathVariable(name = "userId") String userId, @RequestBody TopUpModelRequest modelRequest) {
 
         WalletDto walletDto = walletService.topUpAccountByUserId(userId, modelRequest.getAmount());
         return new ModelMapper().map(walletDto, WalletModelResponse.class);
