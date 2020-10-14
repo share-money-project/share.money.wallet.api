@@ -6,6 +6,14 @@ public class WalletDto {
     private String userId;
     private Double total;
 
+    public WalletDto() {
+    }
+
+    public WalletDto(String userId, Double total) {
+        this.userId = userId;
+        this.total = total;
+    }
+
     public long getId() {
         return id;
     }

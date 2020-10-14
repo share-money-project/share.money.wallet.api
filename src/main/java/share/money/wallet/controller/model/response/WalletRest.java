@@ -1,6 +1,7 @@
 package share.money.wallet.controller.model.response;
 
 public class WalletRest {
+
     private String userId;
     private Double total;
 

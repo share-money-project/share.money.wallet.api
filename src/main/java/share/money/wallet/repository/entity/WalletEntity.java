@@ -17,6 +17,9 @@ public class WalletEntity implements Serializable {
     @Column(name = "total", nullable = false)
     private Double total;
 
+    @Column(name = "reserved", nullable = false)
+    private Double reserved = 0.0;
+
     public long getId() {
         return id;
     }
@@ -39,5 +42,13 @@ public class WalletEntity implements Serializable {
 
     public void setTotal(Double total) {
         this.total = total;
+    }
+
+    public Double getReserved() {
+        return reserved;
+    }
+
+    public void setReserved(Double reserved) {
+        this.reserved = reserved;
     }
 }
