@@ -7,6 +7,7 @@ import share.money.wallet.controller.model.request.WalletCreationRequestModel;
 import share.money.wallet.controller.model.response.OperationStatusModel;
 import share.money.wallet.controller.model.response.WalletModelResponse;
 import share.money.wallet.controller.model.response.WalletRest;
+import share.money.wallet.service.BusinessException;
 import share.money.wallet.service.WalletService;
 import share.money.wallet.service.dto.WalletDto;
 import share.money.wallet.shared.ModelMapper;
@@ -29,7 +30,7 @@ public class WalletController {
 
     @GetMapping(value = "/wallet/{userId}")
     @ResponseBody
-    public WalletModelResponse getWallet(@PathVariable(name = "userId") String userId) {
+    public WalletModelResponse getWallet(@PathVariable(name = "userId") String userId) throws BusinessException {
 
         WalletDto walletDto = walletService.findByUserId(userId);
         return ModelMapper.map(walletDto, WalletModelResponse.class);
